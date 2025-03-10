@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSalt - Toko Online</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; text-align: center; margin: 0; padding: 0; background-color: #1a1a1a; color: white; }
+        .header { background-color: #ff0000; padding: 15px; font-size: 24px; font-weight: bold; }
+        .container { width: 90%; max-width: 800px; margin: 20px auto; }
+        .product { background: #2a2a2a; border-radius: 8px; padding: 15px; margin: 10px; text-align: left; }
+        .product img { width: 100%; border-radius: 5px; }
+        .product h3 { margin: 10px 0 5px; }
+        .product p { margin: 5px 0; }
+        .btn { background-color: #ff0000; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; font-size: 16px; }
+        .btn:hover { background-color: #cc0000; }
+        .social { margin-top: 20px; }
+        .social a { margin: 0 10px; color: white; text-decoration: none; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">RedSalt - Toko Online</div>
+    <div class="container" id="product-list"></div>
+
+    <div class="social">
+        <p>Ikuti kami di:</p>
+        <a href="https://www.instagram.com/redsalt.project" target="_blank">Instagram</a> |
+        <a href="https://www.tiktok.com/@redsalt99" target="_blank">TikTok</a>
+    </div>
+
+    <script>
+        const products = [
+            { name: "Kaos Custom", price: 150000, image: "https://via.placeholder.com/300" },
+            { name: "Hoodie Unik", price: 250000, image: "https://via.placeholder.com/300" },
+            { name: "Aksesori Eksklusif", price: 50000, image: "https://via.placeholder.com/300" }
+        ];
+
+        function displayProducts() {
+            const container = document.getElementById("product-list");
+            products.forEach(product => {
+                const productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+                productDiv.innerHTML = `
+                    <img src="${product.image}"><br>
+                    <h3>${product.name}</h3>
+                    <p>Rp ${product.price.toLocaleString()}</p>
+                    <button class="btn" onclick="order('${product.name}', ${product.price})">Pesan</button>
+                `;
+                container.appendChild(productDiv);
+            });
+        }
+
+        function order(name, price) {
+            const waNumber = "6281234567890";  // Ganti dengan nomor WhatsApp Anda
+            const message = `Halo, saya ingin memesan ${name} dengan harga Rp ${price.toLocaleString()}.`;
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, "_blank");
+        }
+
+        displayProducts();
+    </script>
+
+</body>
+</html>
